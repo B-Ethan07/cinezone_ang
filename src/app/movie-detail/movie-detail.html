@@ -1,0 +1,18 @@
+<div class="movie-container container mt-4">
+  @if(isLoading){
+  <div class="text-center my-4">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p>Chargement du post...</p>
+  </div>}
+
+  @if(movie){
+  <div class="movie-card ">
+      <h2 class="card-title text-warning">{{ movie.title }}</h2>
+      <p class="card-text"></p>
+      <p class="card-text"><strong>Réalisateur :</strong> {{ movie.director }}</p>
+      <p class="card-text"><strong>Note :</strong> {{ movie.rating }}/10</p>
+      <p class="card-text"><strong>Année :</strong> {{ movie.release_year }}</p>
+      <p class="card-text"><strong>Catégorie :</strong> {{ movie.category_id }}</p>
+    </div>}
+  <app-button [label]="'&larr; Retour à la liste'" (click)="onReturn()" class="mb-2"></app-button>
+</div>

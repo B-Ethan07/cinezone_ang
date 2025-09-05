@@ -1,0 +1,23 @@
+.btn-modern-yellow {
+  background-color: #ffc107; /* Jaune Bootstrap */
+  color: #212529;
+  border: none;
+  border-radius: 15px;
+  padding: 8px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 1em;
+}
+
+.btn-modern-yellow:hover {
+  background-color: #e0a800;
+  color: #4e4e4e;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px #1f1f1f;
+}
+
+.btn-modern-yellow:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
