@@ -1,6 +1,10 @@
 <div class="movie-container container">
   <h2 class="text-center mb-4">Liste des Films</h2>
-
+<div class="d-flex justify-content-end gap-2 mb-3">
+  <button class="btn btn-sm btn-outline-light" (click)="sortByCategory()">Trier par Catégorie</button>
+  <button class="btn btn-sm btn-outline-light" (click)="sortByYearAsc()">Année ↑</button>
+  <button class="btn btn-sm btn-outline-light" (click)="sortByYearDesc()">Année ↓</button>
+</div>
   <!-- Message de chargement -->
   @if (loading) {
     <div class="text-center text-muted">
@@ -20,16 +24,17 @@
     <div class="row">
       @for (movie of movies; track $index) {
         <div class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="movie-card h-100">
-            <h3>{{ movie.title }}</h3>
+          <div class="movie-card h-100" style="background-color: #1f2122;">
+            <h3 class="card-title">{{ movie.title }}</h3>
             <p><strong>Réalisateur :</strong> {{ movie.director }}</p>
             <p><strong>Note :</strong> {{ movie.rating }}/10</p>
             <p><strong>Année :</strong> {{ movie.release_year }}</p>
-            <p><strong>Catégorie :</strong> {{ movie.category_id }}</p>
-            <div class="card-footer text-end">
-          <a (click)="onView(movie.id)" class="btn btn-sm btn-primary">Voir</a>
-          <a (click)="onEdit(movie.id)" class="btn btn-sm btn-warning mx-2">Modifier</a>
-          <a (click)="onDelete(movie.id)" class="btn btn-sm btn-danger">Supprimer</a>
+            <p><strong>Catégorie :</strong> {{ getCategoryName(movie.category_id) }}</p>
+            <div class="card-footer text-start mt-5">
+          <a (click)="onView(movie.id)" class="btn btn-sm btn-view">Voir</a>
+<a (click)="onEdit(movie.id)" class="btn btn-sm btn-edit mx-2">Modifier</a>
+<a (click)="onDelete(movie.id)" class="btn btn-sm btn-delete">Supprimer</a>
+
           </div>
           </div>
 

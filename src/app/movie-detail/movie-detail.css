@@ -1,6 +1,5 @@
 :root {
-  --background-color: #121212;
-  --card-background: #1e1e1e;
+  --card-background: #343a40;
   --text-color: #ffffff;
   --highlight-color: #ffeb3b; /* Jaune clair */
   --border-color: #3f51b5;    /* Bleu Angular */
@@ -17,6 +16,7 @@
 h2 {
   text-align: center;
   color: var(--highlight-color);
+  text-decoration: underline;
 }
 
 .movie-card {
@@ -28,6 +28,7 @@ h2 {
   transition: box-shadow 0.2s ease;
   color: var(--text-color);
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+  border: 1px solid #ffffff1e;
 }
 
 .movie-card:hover {
