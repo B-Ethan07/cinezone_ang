@@ -1,5 +1,5 @@
 .btn-modern-yellow {
-  background-color: #ffc107; /* Jaune Bootstrap : plus saturé */
+  background-color: #f0ce0d; /* Jaune Bootstrap : plus saturé */
   color: #1a1a1a;             /* Texte foncé = bon contraste */
   border: none;
   border-radius: 10px;
@@ -15,9 +15,8 @@
 }
 
 .btn-modern-yellow:hover {
-  background-color: #e0a800; /* Teinte plus chaude au hover */
-  transform: translateY(-1px); /* Subtil */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #d8b413; /* Teinte plus chaude au hover */
+  box-shadow: 0 4px 10px rgba(41, 41, 41, 0.747);
 }
 
 .btn-modern-yellow:active {
@@ -26,8 +25,4 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-.btn-modern-yellow:focus-visible {
-  outline: 2px solid #ffeb3b; /* Bon contraste */
-  outline-offset: 2px;
-}
 
