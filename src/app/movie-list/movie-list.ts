@@ -66,7 +66,7 @@ export class MovieList {
     this.router.navigate(['/movies', id]);
   }
   onCreate() {
-    this.router.navigate(['movies/create']);
+    this.router.navigate(['movies/new']);
   }
   sortByCategory() {
   this.movies.sort((a, b) => a.category_id - b.category_id);

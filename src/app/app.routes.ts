@@ -9,8 +9,8 @@ import { Register } from './register/register';
 
 export const routes: Routes = [
   { path: "movies", component: MovieList},
-  { path: "movies/:id", component: MovieDetail },
   { path: "movies/new", component: MovieForm },
+  { path: "movies/:id", component: MovieDetail },
   { path: "movies/:id/edit", component: MovieForm},
   { path: "movies", component: MovieList},
   { path: "signup", component: Register},

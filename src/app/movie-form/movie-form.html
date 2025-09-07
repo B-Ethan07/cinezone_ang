@@ -1,1 +1,106 @@
-<p>movie-form works!</p>
+<div class="container mt-5 create" style="max-width: 600px;">
+  <h2 class="my-4 text-center">{{ movie.id ? `Modification du Film` : `Ajouter un Film`}}</h2>
+
+  <form (ngSubmit)="onSubmit()" #movieForm="ngForm">
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre :</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        class="form-control"
+        [(ngModel)]="movie.title"
+        required
+        #title="ngModel"
+        [class.is-invalid]="title.invalid && title.touched"
+      />
+      @if (title.invalid && title.touched) {
+      <div class="invalid-feedback">Le titre est requis.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="director" class="form-label">Réalisateur :</label>
+      <input
+        type="text"
+        id="director"
+        name="director"
+        class="form-control"
+        [(ngModel)]="movie.director"
+        required
+        #director="ngModel"
+        [class.is-invalid]="director.invalid && director.touched"
+      />
+      @if (director.invalid && director.touched) {
+      <div class="invalid-feedback">Le réalisateur est requis.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="rating" class="form-label">Note : {{ movie.rating }}/10</label>
+      <input
+        type="range"
+        class="form-range"
+        min="0"
+        max="10"
+        [(ngModel)]="movie.rating"
+        #rating="ngModel"
+        name="rating"
+        id="rating"
+        required
+        [class.is-invalid]="rating.invalid && rating.touched"
+      />
+      @if (rating.invalid && rating.touched) {
+      <div class="invalid-feedback">La note est requise.</div>
+      }
+    </div>
+
+<div class="mb-3">
+  <label for="release_year" class="form-label">Année de sortie :</label>
+  <input
+    type="number"
+    id="release_year"
+    name="release_year"
+    class="form-control"
+    [(ngModel)]="movie.release_year"
+    required
+    #release_year="ngModel"
+    [class.is-invalid]="release_year.invalid && release_year.touched"
+    [attr.placeholder]="'ex: 2024'"
+    min="1900"
+    max="2099"
+  />
+  @if (release_year.invalid && release_year.touched) {
+    <div class="invalid-feedback">L'année de sortie est requise.</div>
+  }
+</div>
+
+    <div class="mb-3">
+      <label for="category_id" class="form-label">Genre :</label>
+      <select
+        id="category_id"
+        name="category_id"
+        class="form-select form-control"
+        required
+        [(ngModel)]="movie.category_id"
+        #category_id="ngModel"
+        [class.is-invalid]="category_id.invalid && category_id.touched">
+        <option value="" disabled selected>-- Sélectionnez un genre --</option>
+        @for (category of categories; track $index) {
+        <option [value]="category.id">
+          {{ category.label }}
+        </option>
+        }
+      </select>
+
+      @if (category_id.invalid && category_id.touched) {
+      <div class="invalid-feedback">Le genre est requis.</div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3 ms-2" [disabled]="movieForm.invalid || isSubmitting">
+      {{ isSubmitting ? 'Création...' : 'Ajout du Film' }}
+    </button>
+  </form>
+  <a (click)="onReturn()" class="btn btn-link mt-3">&larr; Retour à la liste de films</a>
+</div>
