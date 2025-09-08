@@ -71,6 +71,7 @@ export class MovieList {
   sortByCategory() {
   this.movies.sort((a, b) => a.category_id - b.category_id);
   }
+
   getCategoryName(id: number): string {
   return this.categories[id] || 'Inconnue';
   }

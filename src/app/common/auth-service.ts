@@ -11,6 +11,20 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  signup(email: string, password: string, name: string): Observable<User> {
+    return this.http.post<User>(
+      `${this.baseUrl}/users`,
+      {
+        name: name,
+        email: email,
+        password: password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
   login(email: string, password: string): Observable<void> {
     return this.http.post<void>(
       `${this.baseUrl}/login`,
@@ -31,7 +45,7 @@ export class AuthService {
 
   logout(): Observable<void> {
     // → supprime cookie
-    return this.http.post<void>(`${this.baseUrl}/profile`, {
+    return this.http.post<void>(`${this.baseUrl}`, {
       withCredentials: true,
     });
   }

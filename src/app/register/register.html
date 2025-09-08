@@ -1,36 +1,90 @@
-  <div class="container mt-5" style="max-width: 400px;">
-    <h2 class="mb-4 text-center">Créer un compte</h2>
-    <form id="signupForm">
-      <div class="mb-3">
-        <label for="username" class="form-label">Nom d'utilisateur</label>
-        <input
+<div class="container mt-5" style="max-width: 400px;">
+  <h2 class="mb-4 text-center">Créer un compte</h2>
+  <form #signupForm="ngForm" id="signupForm" (ngSubmit)="onSignup()">
+
+    <!-- Nom d'utilisateur -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Nom d'utilisateur</label>
+      <input
         type="text"
         class="form-control"
-        id="username"
-        name="username"
-        required />
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Adresse email</label>
-        <input
+        id="name"
+        name="name"
+        [(ngModel)]="user.name"
+        #nameRef="ngModel"
+        required
+        minlength="2"
+        maxlength="100"
+        placeholder="Jean.." />
+      @if (nameRef.errors && nameRef.touched) {
+        <div class="invalid-feedback d-block">
+          @if (nameRef.errors['required']) {
+            <div>Le nom d'utilisateur est requis.</div>
+          }
+          @if (nameRef.errors['minlength'] || nameRef.errors['maxlength']) {
+            <div>Le nom doit contenir entre 2 et 100 caractères.</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Adresse email</label>
+      <input
         type="email"
         class="form-control"
         id="email"
         name="email"
-        required />
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe</label>
-        <input
+        [(ngModel)]="user.credentials.email"
+        #emailRef="ngModel"
+        required
+        email
+        placeholder="exemple@domaine.com" />
+      @if (emailRef.errors && emailRef.touched) {
+        <div class="invalid-feedback d-block">
+          @if (emailRef.errors['required']) {
+            <div>L'email est requis.</div>
+          }
+          @if (emailRef.errors['email']) {
+            <div>Format de l'email invalide (ex: exemple@domaine.com).</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Mot de passe -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe</label>
+      <input
         type="password"
         class="form-control"
         id="password"
         name="password"
-        required />
-      </div>
-      <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
-    </form>
-    <div class="mt-3 text-center">
-      <small>Pas encore inscrit ? <a routerLink="/login" routerLinkActive="active">Se connecter</a></small>
+        [(ngModel)]="user.credentials.password"
+        #passwordRef="ngModel"
+        required
+        minlength="10"
+        placeholder="Votre mot de passe" />
+      @if (passwordRef.errors && passwordRef.touched) {
+        <div class="invalid-feedback d-block">
+          @if (passwordRef.errors['required']) {
+            <div>Le mot de passe est requis.</div>
+          }
+          @if (passwordRef.errors['minlength']) {
+            <div>Le mot de passe doit contenir au moins 10 caractères.</div>
+          }
+        </div>
+      }
     </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">
+      S'inscrire
+    </button>
+  </form>
+
+  <div class="mt-3 text-center">
+    <small>Déjà inscrit ? <a routerLink="/login" routerLinkActive="active">Se connecter</a></small>
   </div>
+</div>

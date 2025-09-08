@@ -5,14 +5,29 @@
     <p>Chargement du post...</p>
   </div>}
 
-  @if(movie){
+@if(movie) {
   <div class="movie-card" style="background-color: #1f2122;">
-      <h2 class="card-title text-warning">{{ movie.title }}</h2>
-      <p class="card-text"></p>
+    <div class="movie-poster">
+      <img
+        src="https://st2.depositphotos.com/2586633/46477/v/450/depositphotos_464771766-stock-illustration-no-photo-or-blank-image.jpg"
+        alt="Affiche de film"
+        class="poster-image"
+      />
+      <div class="poster-overlay"></div>
+      <div class="view-overlay">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+
+    <div class="movie-details">
+      <h2 class="card-title text-warning mb-4">{{ movie.title }}</h2>
       <p class="card-text"><strong>Réalisateur :</strong> {{ movie.director }}</p>
-      <p class="card-text"><strong>Note :</strong> {{ movie.rating }}/10</p>
+      <p class="card-text "><strong>Note : </strong><span class='rating'>{{ movie.rating }}/10 ⭐</span> </p>
       <p class="card-text"><strong>Année :</strong> {{ movie.release_year }}</p>
       <p class="card-text"><strong>Catégorie :</strong> {{ getCategoryName(movie.category_id) }}</p>
-    </div>}
+    </div>
+  </div>
+}
+
   <app-button [label]="'&larr; Retour à la liste'" (click)="onReturn()" class="mb-2"></app-button>
 </div>

@@ -1,51 +1,91 @@
+<!-- Template HTML (movies.component.html) -->
 <div class="movie-container container">
-  <h2 class="text-center mb-4">Liste des Films</h2>
-  <a (click)="onCreate()" class="btn btn-sm btn-outline-secondary me-2">
-  Crée un post
-</a>
+  <h2 class="text-center mb-4">Catalogue de Films</h2>
 
-<div class="d-flex justify-content-end gap-2 mb-3">
-  <button class="btn btn-sm btn-outline-light" (click)="sortByCategory()">Trier par Catégorie</button>
-  <button class="btn btn-sm btn-outline-light" (click)="sortByYearAsc()">Année ↑</button>
-  <button class="btn btn-sm btn-outline-light" (click)="sortByYearDesc()">Année ↓</button>
-</div>
+  <div class="controls d-flex justify-content-between align-items-center mb-4">
+    <button (click)="onCreate()" class="btn btn-create">
+      <i class="fas fa-plus"></i> Créer un film
+    </button>
+
+    <div class="sort-buttons d-flex gap-2">
+      <button class="btn btn-sort" (click)="sortByCategory()">
+        <i class="fas fa-tags"></i> Catégorie
+      </button>
+      <button class="btn btn-sort" (click)="sortByYearAsc()">
+        <i class="fas fa-sort-up"></i> Année ↑
+      </button>
+      <button class="btn btn-sort" (click)="sortByYearDesc()">
+        <i class="fas fa-sort-down"></i> Année ↓
+      </button>
+    </div>
+  </div>
+
   <!-- Message de chargement -->
   @if (loading) {
-    <div class="text-center text-muted">
-      Chargement en cours...
+    <div class="loading text-center">
+      <i class="fas fa-spinner fa-spin"></i> Chargement en cours...
     </div>
   }
 
   <!-- Message si aucun film -->
   @if (!loading && movies.length === 0) {
-    <div class="text-center text-warning">
-      Aucun film disponible.
+    <div class="no-movies text-center">
+      <i class="fas fa-film"></i> Aucun film disponible.
     </div>
   }
 
-  <!-- Liste des films -->
+  <!-- Grille des films -->
   @if (!loading && movies.length > 0) {
-    <div class="row">
+    <div class="movies-grid">
       @for (movie of movies; track $index) {
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="movie-card h-100" style="background-color: #1f2122; position: relative;">
-      <!-- Icône Play -->
-          <div class="play-icon">
-          <i class="fas fa-play-circle"></i> <!-- si tu utilises FontAwesome -->
-          </div>
-            <h3 class="card-title">{{ movie.title }}</h3>
-            <p><strong>Réalisateur :</strong> {{ movie.director }}</p>
-            <p><strong>Note :</strong> {{ movie.rating }}/10</p>
-            <p><strong>Année :</strong> {{ movie.release_year }}</p>
-            <p><strong>Catégorie :</strong> {{ getCategoryName(movie.category_id) }}</p>
-            <div class="card-footer text-start mt-5">
-          <a (click)="onView(movie.id ?? 0)" class="btn btn-sm btn-view">Voir</a>
-          <a (click)="onEdit(movie.id ?? 0)" class="btn btn-sm btn-edit mx-2">Modifier</a>
-          <a (click)="onDelete(movie.id ?? 0)" class="btn btn-sm btn-delete">Supprimer</a>
-          </div>
+        <div class="movie-card" (click)="onView(movie.id ?? 0)" style="background-color: #1f2122;;">
+          <!-- Image du film (même pour tous) -->
+          <div class="movie-poster">
+            <img src="https://st2.depositphotos.com/2586633/46477/v/450/depositphotos_464771766-stock-illustration-no-photo-or-blank-image.jpg"
+                 alt="Affiche de film"
+                 class="poster-image">
+            <div class="poster-overlay"></div>
+            <div class="view-overlay">
+              <i class="fas fa-search"></i>
+            </div>
           </div>
 
-        </div>}
-    </div>}
+          <!-- Contenu du film -->
+          <div class="movie-content">
+            <h3 class="movie-title">{{ movie.title }}</h3>
+
+            <!-- Informations qui apparaissent au hover -->
+            <div class="movie-info">
+              <div class="info-item">
+                <span class="info-label">Réalisateur:</span>
+                <span class="info-value">{{ movie.director }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Note:</span>
+                <span class="info-value rating">{{ movie.rating }}/10 ⭐</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Année:</span>
+                <span class="info-value">{{ movie.release_year }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Catégorie:</span>
+                <span class="info-value">{{ getCategoryName(movie.category_id) }}</span>
+              </div>
+            </div>
+
+            <!-- Actions qui apparaissent au hover -->
+            <div class="movie-actions">
+              <button (click)="onEdit(movie.id ?? 0); $event.stopPropagation()" class="action-btn btn-edit">
+                <i class="fas fa-edit"></i> Modifier
+              </button>
+              <button (click)="onDelete(movie.id ?? 0); $event.stopPropagation()" class="action-btn btn-delete">
+                <i class="fas fa-trash"></i> Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
 </div>
-
