@@ -1,3 +1,22 @@
 .container {
   margin-top: 2rem;
 }
+
+/* S'assure que le body et le html prennent 100% de la hauteur */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Le wrapper de la page prend toute la hauteur et gère le layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Le contenu principal prend tout l'espace disponible */
+.main-content {
+  flex: 1;
+}

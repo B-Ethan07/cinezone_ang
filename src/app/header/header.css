@@ -17,3 +17,6 @@
 .nav-link:hover {
   color: #f0ce0d !important;
 }
+a, .nav-link {
+  cursor: pointer;
+}

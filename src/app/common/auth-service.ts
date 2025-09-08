@@ -44,9 +44,10 @@ export class AuthService {
   }
 
   logout(): Observable<void> {
-    // → supprime cookie
-    return this.http.post<void>(`${this.baseUrl}`, {
-      withCredentials: true,
-    });
+    return this.http.post<void>(
+      `${this.baseUrl}/logout`,
+      {},
+      { withCredentials: true }
+    );
   }
 }

@@ -1,0 +1,33 @@
+.footer {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  padding: 20px 0;
+  width: 100%;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.footer-brand {
+  font-weight: bold;
+  color: #f0ce0d;
+  font-size: 1.2rem;
+}
+
+.footer-text {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+}
+
+.footer-link {
+  color: #f1f1f1;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #f0ce0d;
+}
