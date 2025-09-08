@@ -12,7 +12,7 @@
       <p class="card-text"><strong>Réalisateur :</strong> {{ movie.director }}</p>
       <p class="card-text"><strong>Note :</strong> {{ movie.rating }}/10</p>
       <p class="card-text"><strong>Année :</strong> {{ movie.release_year }}</p>
-      <p class="card-text"><strong>Catégorie :</strong> {{ movie.category_id }}</p>
+      <p class="card-text"><strong>Catégorie :</strong> {{ getCategoryName(movie.category_id) }}</p>
     </div>}
   <app-button [label]="'&larr; Retour à la liste'" (click)="onReturn()" class="mb-2"></app-button>
 </div>

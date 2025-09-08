@@ -14,6 +14,14 @@ import { Button } from '../button/button';
 export class MovieDetail {
   movie!: Movie;
   isLoading = true;
+  categories: { [id: number]: string } = {
+  1: 'Science-Fiction',
+  2: 'Drame',
+  3: 'Thriller / Social',
+  4: 'Comédie / Romance',
+  5: 'Animation / Fantastique',
+  6: 'Guerre / Historique'
+};
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +52,9 @@ export class MovieDetail {
   }
   onReturn(): void {
   this.router.navigate(['/movies']);
+  }
+    getCategoryName(id: number): string {
+  return this.categories[id] || 'Inconnue';
   }
 
 }
