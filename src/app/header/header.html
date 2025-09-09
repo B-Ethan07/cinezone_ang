@@ -1,12 +1,8 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-  <a class="navbar-brand" routerLink="/">CineZone</a>
-  @if (user?.name) {
-    <span class="navbar-text text-white ms-3">
-      Bonjour, {{ this.user?.name }}
-    </span>
-  }
-  <!-- Burger Button -->
+
+  <a class="navbar-brand me-4" routerLink="/">CineZone</a>
+
   <button
     class="navbar-toggler"
     type="button"
@@ -16,12 +12,13 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
-    <span class="navbar-toggler-icon" ></span>
+    <span class="navbar-toggler-icon"></span>
   </button>
 
-  <!-- Menu -->
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
+
+
+    <ul class="navbar-nav me-auto">
       <li class="nav-item">
         <a
           routerLink=""
@@ -34,14 +31,27 @@
       <li class="nav-item">
         <a routerLink="/movies" routerLinkActive="active" class="nav-link">Movies</a>
       </li>
-      @if(!this.user){
-      <li class="nav-item">
-        <a routerLink="/login" routerLinkActive="active" class="nav-link">Connexion</a>
-      </li>
-    } @else {
-      <li class="nav-item">
-        <a routerLink="/logout" (click)="logout()" routerLinkActive="active" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-      </li>}
+    </ul>
+
+    <ul class="navbar-nav ms-auto">
+      @if(user){
+        <li class="nav-item me-3">
+          <a routerLink="/profile" routerLinkActive="active" class="nav-link"><i class='fa fa-user me-2' style='color:#ffffff'></i> <strong>{{ this.user.name }}</strong>  </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/logout" (click)="logout()" routerLinkActive="active" class="nav-link">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </a>
+        </li>
+      } @else {
+        <li class="nav-item">
+          <a routerLink="/login" routerLinkActive="active" class="nav-link">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/signup" routerLinkActive="active" class="nav-link">Inscription</a>
+        </li>
+      }
     </ul>
   </div>
 </nav>
+

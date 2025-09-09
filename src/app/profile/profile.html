@@ -1,0 +1,40 @@
+<section class="container my-5">
+  @if (user) {
+    <div class="profile-card mx-auto">
+      <div class="profile-header">
+        Profile Info
+      </div>
+      <div class="row g-0 align-items-center" style="background-color: #1f2122; color: #ffffff;">
+        <div class="col-md-4 text-center profile-avatar-section">
+          <img
+            src="https://www.svgrepo.com/show/331253/user.svg"
+            class="profile-avatar"
+            alt="Profile picture"
+          >
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <table class="table table-borderless text-white mb-0">
+              <tbody >
+                <tr>
+                  <th scope="row" style="width: 30%;">Username:</th>
+                  <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Email:</th>
+                  <td>{{ user.email }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <h3 class="text-danger text-center my-5">You are not connected</h3>
+  }
+</section>
+
+<div class="text-center mt-4">
+  <app-button [label]="'&larr; Retour à la liste'" (click)="onReturn()" class="mb-2"></app-button>
+</div>

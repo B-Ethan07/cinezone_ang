@@ -36,7 +36,7 @@
         class="form-control"
         id="email"
         name="email"
-        [(ngModel)]="user.credentials.email"
+        [(ngModel)]="user.email"
         #emailRef="ngModel"
         required
         email
@@ -77,6 +77,46 @@
         </div>
       }
     </div>
+
+<div class="mb-3">
+  <label for="verifyPassword" class="form-label">Vérification du mot de passe</label>
+  <input
+    type="password"
+    class="form-control"
+    id="verifyPassword"
+    name="verifyPassword"
+    [(ngModel)]="verifyPassword"
+    #verifyPasswordRef="ngModel"
+    required
+    minlength="10"
+    placeholder="Votre mot de passe" />
+
+  <!-- Erreurs classiques -->
+  @if (verifyPasswordRef.errors && verifyPasswordRef.touched) {
+    <div class="invalid-feedback d-block">
+      @if (verifyPasswordRef.errors['required']) {
+        <div>Le mot de passe est requis.</div>
+      }
+      @if (verifyPasswordRef.errors['minlength']) {
+        <div>Le mot de passe doit contenir au moins 10 caractères.</div>
+      }
+    </div>
+  }
+
+  <!-- Erreur "les mots de passe ne correspondent pas" -->
+  @if (
+    verifyPasswordRef.touched &&
+    passwordRef.touched &&
+    verifyPassword &&
+    user.credentials.password &&
+    verifyPassword !== user.credentials.password
+  ) {
+    <div class="invalid-feedback d-block">
+      Le mot de passe n'est pas le même.
+    </div>
+  }
+</div>
+
 
     <!-- Submit -->
     <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">

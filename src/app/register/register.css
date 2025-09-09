@@ -1,7 +1,7 @@
 /* --- Formulaires --- */
 .form-control {
   background-color: #1e1e1e;
-  color: #ffffff;
+  color: #ffffff!important;
   border: 1px solid #444;
   border-radius: 8px;
   padding: 0.6rem 1rem;
@@ -9,12 +9,15 @@
 
 .form-control:focus {
   background-color: #ffffff;
-  color: #000000;
+  color: #000000!important;
   border-color: #f0ce0d;
   box-shadow: 0 0 0 0.2rem rgba(13, 202, 240, 0.25);
 }
 
-
+input::placeholder {
+  color: rgb(82, 82, 82);
+  opacity: 1; /* Facultatif : pour s'assurer que le texte est bien visible */
+}
 /* --- Liens --- */
 a {
   color: #f0ce0d;

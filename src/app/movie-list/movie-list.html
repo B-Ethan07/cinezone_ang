@@ -1,24 +1,30 @@
-<!-- Template HTML (movies.component.html) -->
 <div class="movie-container container">
   <h2 class="text-center mb-4">Catalogue de Films</h2>
 
   <div class="controls d-flex justify-content-between align-items-center mb-4">
-    <button (click)="onCreate()" class="btn btn-create">
+    <button (click)="onCreate()" class="btn btn-outline-warning">
       <i class="fas fa-plus"></i> Créer un film
     </button>
 
-    <div class="sort-buttons d-flex gap-2">
-      <button class="btn btn-sort" (click)="sortByCategory()">
-        <i class="fas fa-tags"></i> Catégorie
+    <!-- Categorie select -->
+    <div class="sort-buttons d-flex gap-2"><div class="form-group mb-3">
+      <select id="categorySelect" class="form-select" [(ngModel)]="selectedCategoryId">
+        <option [ngValue]="null">Toutes les catégories</option>
+        @for (id of categoryIds; track id) {
+        <option [ngValue]="id">{{ categories[id] }}</option>
+        }
+      </select>
+    </div>
+
+      <button class="btn btn-outline-secondary" (click)="sortByYearAsc()">
+        <i class="fas fa-sort-up me-2"></i>  Année
       </button>
-      <button class="btn btn-sort" (click)="sortByYearAsc()">
-        <i class="fas fa-sort-up"></i> Année ↑
-      </button>
-      <button class="btn btn-sort" (click)="sortByYearDesc()">
-        <i class="fas fa-sort-down"></i> Année ↓
+      <button class="btn btn-outline-secondary" (click)="sortByYearDesc()">
+        <i class="fas fa-sort-down me-2"></i> Année
       </button>
     </div>
   </div>
+
 
   <!-- Message de chargement -->
   @if (loading) {
@@ -28,17 +34,17 @@
   }
 
   <!-- Message si aucun film -->
-  @if (!loading && movies.length === 0) {
+  @if (!loading && filteredMovies.length === 0) {
     <div class="no-movies text-center">
       <i class="fas fa-film"></i> Aucun film disponible.
     </div>
   }
 
   <!-- Grille des films -->
-  @if (!loading && movies.length > 0) {
+  @if (!loading && filteredMovies.length > 0) {
     <div class="movies-grid">
-      @for (movie of movies; track $index) {
-        <div class="movie-card" (click)="onView(movie.id ?? 0)" style="background-color: #1f2122;;">
+      @for (movie of filteredMovies; track $index) {
+        <div class="movie-card" (click)="onView(movie.id ?? 0)" style="background-color: #1f2122;">
           <!-- Image du film (même pour tous) -->
           <div class="movie-poster">
             <img src="https://st2.depositphotos.com/2586633/46477/v/450/depositphotos_464771766-stock-illustration-no-photo-or-blank-image.jpg"
@@ -75,12 +81,12 @@
             </div>
 
             <!-- Actions qui apparaissent au hover -->
-            <div class="movie-actions">
-              <button (click)="onEdit(movie.id ?? 0); $event.stopPropagation()" class="action-btn btn-edit">
-                <i class="fas fa-edit"></i> Modifier
+            <div class="movie-actions ">
+              <button (click)="onEdit(movie.id ?? 0); $event.stopPropagation()" class="btn btn-outline-warning">
+                <i class="fas fa-edit"></i>
               </button>
-              <button (click)="onDelete(movie.id ?? 0); $event.stopPropagation()" class="action-btn btn-delete">
-                <i class="fas fa-trash"></i> Supprimer
+              <button (click)="onDelete(movie.id ?? 0); $event.stopPropagation()" class="btn btn-outline-danger">
+                <i class="fas fa-trash"></i>
               </button>
             </div>
           </div>

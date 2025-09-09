@@ -1,49 +1,56 @@
-  <div class="container mt-5" style="max-width: 400px;">
-    <h2 class="mb-4 text-center">Connexion</h2>
-    <form id="loginForm" #loginForm="ngForm" (ngSubmit)="onLogin()">
-      <div class="mb-3">
-        <label for="email" class="form-label">Adresse email</label>
-        <input
+<div class="container mt-5" style="max-width: 400px">
+  <h2 class="mb-4 text-center">Connexion</h2>
+  <form id="loginForm" #loginForm="ngForm" (ngSubmit)="onLogin()">
+    <div class="mb-3">
+      <label for="email" class="form-label">Adresse email</label>
+      <input
         type="email"
         class="form-control"
         id="email"
         name="email"
-        [(ngModel)]="credentials.email"
+        [(ngModel)]="email"
         #emailRef="ngModel"
         required
         email
-        placeholder="exemple@domaine.com" />
-        @if (emailRef.invalid && emailRef.touched) {
-          <div class="invalid-feedback">Le format de l'email n'est pas conforme</div>
-        }
-      </div>
-
-      <!-- Password -->
-
-      <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe</label>
-        <input
-        type="password"
-         class="form-control"
-         id="password"
-         name="password"
-          [(ngModel)]="credentials.password"
-          #passwordRef="ngModel"
-          required
-          minlength="10"
-          placeholder="Votre mot de passe"
-        />
-          @if (passwordRef.invalid && passwordRef.touched) {
-            <div class="invalid-feedback">Le format du mot de passe n'est pas conforme</div>
-          }
-      </div>
-      <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Se connecter</button>
-      @if (errorMessage) {
-      <div class="alert alert-danger mt-3 text-center">
-        {{ errorMessage }}
-      </div>}
-    </form>
-    <div class="mt-3 text-center">
-      <small>Pas encore inscrit ? <a routerLink="/signup" routerLinkActive="active">Créer un compte</a></small>
+        placeholder="exemple@domaine.com"
+      />
+      @if (emailRef.invalid && emailRef.touched) {
+      <div class="invalid-feedback">Le format de l'email n'est pas conforme</div>
+      }
     </div>
+
+    <!-- Password -->
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        #passwordRef="ngModel"
+        required
+        minlength="10"
+        placeholder="Votre mot de passe"
+      />
+      @if (passwordRef.invalid && passwordRef.touched) {
+      <div class="invalid-feedback">Le format du mot de passe n'est pas conforme</div>
+      }
+    </div>
+    <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+      Se connecter
+    </button>
+    @if (errorMessage) {
+    <div class="alert alert-danger mt-3 text-center">
+      {{ errorMessage }}
+    </div>
+    }
+  </form>
+  <div class="mt-3 text-center">
+    <small
+      >Pas encore inscrit ?
+      <a routerLink="/signup" routerLinkActive="active">Créer un compte</a></small
+    >
   </div>
+</div>

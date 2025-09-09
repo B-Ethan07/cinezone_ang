@@ -14,6 +14,7 @@ import { Button } from '../button/button';
 export class MovieDetail {
   movie!: Movie;
   isLoading = true;
+  deletedMovie: number[] = [];
   categories: { [id: number]: string } = {
   1: 'Science-Fiction',
   2: 'Drame',
@@ -26,7 +27,7 @@ export class MovieDetail {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private postService: MovieService,
+    private movieService: MovieService,
     private toastr: ToastrService
   ) {}
 
@@ -39,7 +40,7 @@ export class MovieDetail {
       return;
     }
 
-    this.postService.getMovie(id).subscribe({
+    this.movieService.getMovie(id).subscribe({
       next: (data) => {
         this.movie = data;
         this.isLoading = false;
@@ -55,6 +56,24 @@ export class MovieDetail {
   }
     getCategoryName(id: number): string {
   return this.categories[id] || 'Inconnue';
+  }
+
+  onEdit(id: number): void {
+    this.router.navigate([`movies/${id}/edit`]);
+  }
+
+  onDelete(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce post ?')) {
+      this.movieService.deleteMovie(id).subscribe({
+        next: () => {
+          this.toastr.success('Post supprimé avec succès');
+          this.deletedMovie.push(id); // mise à jour locale
+        },
+        error: () => {
+          this.toastr.error('Échec de la suppression du post');
+        },
+      });
+    }
   }
 
 }

@@ -2,6 +2,7 @@ import { AuthService } from './../common/auth-service';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,27 +11,31 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   styleUrl: './login.css'
 })
 export class Login {
-  credentials = {
-    email: '',
-    password: ''
-  };
+  email!: string;
+  password!: string;
   errorMessage: string = '';
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   onLogin() {
-    this.authService.login(this.credentials.email, this.credentials.password).subscribe({
+    this.authService.login(this.email, this.password).subscribe({
       next: () => {
-        // Connexion réussie, rediriger vers la page d'accueil (ou tableau de bord, etc.)
-        this.router.navigate(['/profile']);
+        this.toastr.success('Login successful');
+        this.authService.profil().subscribe({
+          next: (user) => {
+            //localStorage.setItem('userName', user.name);
+            this.router.navigate(['/home']);
+          },
+          error: (err) => console.log(err)
+        })
       },
-      error: (error) => {
-        // Gérer les erreurs (ex: mauvais identifiants)
-        console.error('Erreur de connexion :', error);
-        this.errorMessage = 'Email ou mot de passe incorrect.';
+      error: (err) => {
+        this.errorMessage = err.error.message;
+        this.toastr.error(this.errorMessage);
       }
     });
   }
