@@ -34,12 +34,13 @@
     </ul>
 
     <ul class="navbar-nav ms-auto">
-      @if(user){
+      @if(authService.user){
         <li class="nav-item me-3">
-          <a routerLink="/profile" routerLinkActive="active" class="nav-link"><i class='fa fa-user me-2' style='color:#ffffff'></i> <strong>{{ this.user.name }}</strong>  </a>
+          @if(user){
+          <a routerLink="/profile" routerLinkActive="active" class="nav-link"><i class='fa fa-user me-2' style='color:#ffffff'></i> <strong>{{ user.name }}</strong></a>}
         </li>
         <li class="nav-item">
-          <a routerLink="/logout" (click)="logout()" routerLinkActive="active" class="nav-link">
+          <a (click)="logout($event)" class="nav-link">
             <i class="fa fa-sign-out" aria-hidden="true"></i>
           </a>
         </li>

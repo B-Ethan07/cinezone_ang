@@ -19,12 +19,12 @@ export class MovieService {
     return this.http.get<Movie>(`${this.baseUrl}movies/${id}`)
   }
   createMovie(movie: Movie): Observable<Movie>{
-    return this.http.post<Movie>(`${this.baseUrl}movies`, movie)
+    return this.http.post<Movie>(`${this.baseUrl}movies`, movie, { withCredentials: true })
   }
   updateMovie(id: number, movie: Movie): Observable<Movie>{
-    return this.http.put<Movie>(`${this.baseUrl}movies/${id}`, movie)
+    return this.http.put<Movie>(`${this.baseUrl}movies/${id}`, movie, { withCredentials: true })
   }
   deleteMovie(id: number): Observable<void>{
-    return this.http.delete<void>(`${this.baseUrl}movies/${id}`)
+    return this.http.delete<void>(`${this.baseUrl}movies/${id}`, { withCredentials: true })
   }
 }

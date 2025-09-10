@@ -19,7 +19,7 @@ import { AuthService } from '../../common/auth-service';
 export class Header {
   user?:User ;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.authService.profil().subscribe({
@@ -29,9 +29,11 @@ export class Header {
     });
   }
 
-  logout(): void {
-  this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login'])
+  logout(event: Event): void {
+    event.preventDefault();
+  this.authService.logout().subscribe({
+      next: () => this.router.navigate(['']),
+      error: () => alert('Erreur durant la deconnexion'),
   });
 }
 }

@@ -1,4 +1,5 @@
-
+import { AuthService } from './common/auth-service';
+import { authGuard } from './common/authguard';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -14,4 +15,10 @@ import { Header } from './components/header/header';
 })
 export class App {
   protected readonly title = signal('Cinezone');
+
+  constructor(private AuthService: AuthService){}
+
+  ngOnInit() {
+    this.AuthService.refreshProfil()
+  }
 }

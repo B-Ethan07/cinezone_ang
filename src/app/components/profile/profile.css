@@ -9,11 +9,6 @@
   color: #ffffff;
 }
 
-.profile-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
 .profile-header {
   background: #343a40;
   color: #ffc107;
@@ -34,12 +29,8 @@
   border-radius: 50%;
   border: 3px solid #ffc107;
   object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
-.profile-avatar:hover {
-  transform: scale(1.05);
-}
 
 .card-body {
   padding: 1.5rem;

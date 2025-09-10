@@ -1,59 +1,88 @@
-# Cinezone
+# CineZone
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.6.
+CineZone is an Angular web application that allows users to browse, manage and interact with a movie catalog. Users can view movie details, add new movies, edit existing ones, and manage their profile.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Browse movie catalog
+- Filter movies by category
+- Rate movies
+- Create and edit movies
+- User authentication
+- Responsive design
 
+## Prerequisites
+
+Before you begin, ensure you have installed:
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js)
+- [Angular CLI](https://angular.dev/) (v20.1.6)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <https://github.com/B-Ethan07/cinezone_front_angular.git>
+cd cinezone_front_angular
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Follow the instruction in the Readme of cinezone_back_express :
+
+```bash
+git clone <https://github.com/B-Ethan07/cinezone_back_express.git>
+npm install 
+create the DB with MySql
+```
+4. Initialize Express API backend server (in a separate terminal) :
+```bash
+# Navigate to your API directory and run:
+npm start
+```
+5. Start the Angular development server:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+6. Open your browser and navigate to `http://localhost:4200`
 
-## Code scaffolding
+## Environment Setup
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The application expects a backend API running at `http://localhost:3000`. Make sure your Express API is running and accessible at this URL.
 
-```bash
-ng generate component component-name
-```
+## Running Tests
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+To run the unit tests:
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Project Structure
 
-For end-to-end (e2e) testing, run:
+- `/src/app/components` - Angular components
+- `/src/app/models` - TypeScript interfaces
+- `/src/app/common` - Shared services and guards
+- `/src/assets` - Static assets like images
 
-```bash
-ng e2e
-```
+## Built With
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- [Angular](https://angular.dev/) - Frontend framework
+- [Bootstrap](https://getbootstrap.com/) - CSS framework
+- [NgxToastr](https://www.npmjs.com/package/ngx-toastr) - Toast notifications
+- [Font Awesome](https://fontawesome.com/) - Icons
 
-## Additional Resources
+## Contributing
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details
