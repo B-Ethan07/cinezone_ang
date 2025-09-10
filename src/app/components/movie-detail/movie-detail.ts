@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Movie } from '../models/movie';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieService } from '../common/movie-service';
 import { ToastrService } from 'ngx-toastr';
 import { Button } from '../button/button';
+import { Movie } from '../../models/movie';
+import { MovieService } from '../../common/movie-service';
 
 @Component({
   selector: 'app-movie-detail',

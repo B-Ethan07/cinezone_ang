@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
-import { MovieList } from './movie-list/movie-list';
-import { MovieDetail } from './movie-detail/movie-detail';
-import { MovieForm } from './movie-form/movie-form';
-import { Login } from './login/login';
-import { Profile } from './profile/profile';
-import { Register } from './register/register';
+import { Home } from './components/home/home';
+import { MovieForm } from './components/movie-form/movie-form';
+import { MovieDetail } from './components/movie-detail/movie-detail';
+import { MovieList } from './components/movie-list/movie-list';
+import { Register } from './components/register/register';
+import { Login } from './components/login/login';
+import { Profile } from './components/profile/profile';
 
 export const routes: Routes = [
   { path: "movies", component: MovieList},

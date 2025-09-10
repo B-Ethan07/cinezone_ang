@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterLinkActive } from '@angular/router';
 import { RouterLink } from '@angular/router';
-import { User } from '../models/user';
-import { AuthService } from '../common/auth-service';
 import { CommonModule } from '@angular/common';
+import { User } from '../../models/user';
+import { AuthService } from '../../common/auth-service';
 
 
 @Component({

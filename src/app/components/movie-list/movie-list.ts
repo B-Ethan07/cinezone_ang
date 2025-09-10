@@ -1,10 +1,10 @@
-import { MovieService } from './../common/movie-service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Movie } from '../models/movie';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Movie } from '../../models/movie';
+import { MovieService } from '../../common/movie-service';
 
 @Component({
   selector: 'app-movie-list',

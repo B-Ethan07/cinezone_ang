@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Movie } from '../models/movie';
+import { Movie } from '../../models/movie';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieService } from '../common/movie-service';
+import { MovieService } from '../../common/movie-service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
