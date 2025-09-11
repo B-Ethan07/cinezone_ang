@@ -12,6 +12,7 @@
         id="title"
         name="title"
         class="form-control"
+        placeholder="The Green Knight.."
         [(ngModel)]="movie.title"
         required
         #title="ngModel"
@@ -28,6 +29,7 @@
       <input
         type="text"
         id="director"
+        placeholder="David Lowery.."
         name="director"
         class="form-control"
         [(ngModel)]="movie.director"
@@ -97,7 +99,7 @@
         #category_id="ngModel"
         [class.is-invalid]="category_id.invalid && category_id.touched"
       >
-        <option value="" disabled selected>-- Sélectionnez un genre --</option>
+        <option value="" selected>-- Sélectionnez un genre --</option>
         @for (category of categories; track $index) {
           <option [value]="category.id">{{ category.label }}</option>
         }

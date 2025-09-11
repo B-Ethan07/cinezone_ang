@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
 
-  <a class="navbar-brand me-4" routerLink="/">CineZone</a>
+  <a class="navbar-brand me-5" routerLink="/">CineZone</a>
 
   <button
     class="navbar-toggler"
@@ -19,7 +19,7 @@
 
 
     <ul class="navbar-nav me-auto">
-      <li class="nav-item">
+      <li class="nav-item me-3">
         <a
           routerLink=""
           routerLinkActive="active"
@@ -28,27 +28,32 @@
           >Home</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item me-3">
         <a routerLink="/movies" routerLinkActive="active" class="nav-link">Movies</a>
       </li>
+      @if(authService.user){
+        <li class="nav-item me-3">
+          <a (click)="onCreate()" class="nav-link">
+            <i class="fas fa-plus "></i> Ajouter un Film
+          </a>
+        </li>}
     </ul>
-
     <ul class="navbar-nav ms-auto">
       @if(authService.user){
         <li class="nav-item me-3">
-          @if(user){
-          <a routerLink="/profile" routerLinkActive="active" class="nav-link"><i class='fa fa-user me-2' style='color:#ffffff'></i> <strong>{{ user.name }}</strong></a>}
+          <a routerLink="/profile" routerLinkActive="active" class="nav-link"><i class='fa fa-user me-2' style='color:#ffffff' aria-label="profile"></i> <strong>{{ authService.user.name }}</strong></a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item me-3">
           <a (click)="logout($event)" class="nav-link">
-            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <i class="fa fa-sign-out" aria-hidden="true" aria-label="logout"></i>
           </a>
         </li>
       } @else {
-        <li class="nav-item">
+        <li class="nav-item me-3">
           <a routerLink="/login" routerLinkActive="active" class="nav-link">Connexion</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item me-3">
           <a routerLink="/signup" routerLinkActive="active" class="nav-link">Inscription</a>
         </li>
       }

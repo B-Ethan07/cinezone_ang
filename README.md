@@ -36,8 +36,10 @@ npm install
 ```bash
 git clone <https://github.com/B-Ethan07/cinezone_back_express.git>
 npm install 
-create the DB with MySql
 ```
+
+Create the Database with MySql 
+
 4. Initialize Express API backend server (in a separate terminal) :
 ```bash
 # Navigate to your API directory and run:

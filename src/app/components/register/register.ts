@@ -16,7 +16,6 @@ export class Register {
     id: 0, // Add a valid `id` since it's required in the `User` interface
     name: '',
     email: '',
-
     credentials: {
       password: '',
     },
@@ -27,20 +26,22 @@ export class Register {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSignup() {
-    this.authService
-      .signup(this.user.email, this.user.credentials.password, this.user.name)
-      .subscribe({
-        next: () => {
-          // Connexion réussie, rediriger vers la page d'accueil (ou tableau de bord, etc.)
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          // Gérer les erreurs (ex: mauvais identifiants)
-          console.error('Erreur de connexion :', error);
-          this.errorMessage = 'Champ nom, email ou mot de passe incorrect.';
-        },
-      });
+onSignup() {
+  if (this.user.credentials.password !== this.verifyPassword) {
+    this.errorMessage = 'Les mots de passe ne correspondent pas';
+    return;
   }
+
+  this.authService.signup(this.user.email, this.user.credentials.password, this.user.name)
+    .subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        console.error('Erreur d\'inscription :', error);
+        this.errorMessage = 'Erreur lors de l\'inscription. Veuillez réessayer.';
+      },
+    });
+}
 
 }

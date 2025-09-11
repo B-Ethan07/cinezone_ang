@@ -15,19 +15,28 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  signup(email: string, password: string, name: string): Observable<User> {
-    return this.http.post<User>(
-      `${this.baseUrl}/users`,
-      {
-        name: name,
-        email: email,
-        password: password,
+signup(email: string, password: string, name: string): Observable<User> {
+  return this.http.post<User>(
+    `${this.baseUrl}/users`,
+    {
+      name: name,
+      email: email,
+      password: password,
+    },
+    {
+      withCredentials: true,
+    }
+  ).pipe(
+    tap({
+      next: (u) => {
+        this.user = u;
       },
-      {
-        withCredentials: true,
-      }
-    );
-  }
+      error: () => {
+        this.user = null;
+      },
+    })
+  );
+}
 
   login(email: string, password: string): Observable<User> {
     return this.http

@@ -1,3 +1,5 @@
+import { AuthService } from './../../common/auth-service';
+import { User } from '../../models/user';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -23,12 +25,14 @@ export class MovieDetail {
   5: 'Animation / Fantastique',
   6: 'Guerre / Historique'
 };
+user?: User;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private movieService: MovieService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public authService:AuthService
   ) {}
 
   ngOnInit(): void {
@@ -50,11 +54,16 @@ export class MovieDetail {
         this.router.navigate(['/movies']);
       }
     });
+    this.authService.profil().subscribe({
+      next: (user) => {
+        this.user = user;
+      },
+    });
   }
   onReturn(): void {
   this.router.navigate(['/movies']);
   }
-    getCategoryName(id: number): string {
+  getCategoryName(id: number): string {
   return this.categories[id] || 'Inconnue';
   }
 

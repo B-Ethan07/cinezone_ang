@@ -91,7 +91,6 @@
     minlength="10"
     placeholder="Votre mot de passe" />
 
-  <!-- Erreurs classiques -->
   @if (verifyPasswordRef.errors && verifyPasswordRef.touched) {
     <div class="invalid-feedback d-block">
       @if (verifyPasswordRef.errors['required']) {
@@ -103,7 +102,6 @@
     </div>
   }
 
-  <!-- Erreur "les mots de passe ne correspondent pas" -->
   @if (
     verifyPasswordRef.touched &&
     passwordRef.touched &&

@@ -26,15 +26,15 @@
       <p class="card-text"><strong>Année :</strong> {{ movie.release_year }}</p>
       <p class="card-text"><strong>Catégorie :</strong> {{ getCategoryName(movie.category_id) }}</p>
           <div class="movie-actions ">
-        <button (click)="onEdit(movie.id ?? 0); $event.stopPropagation()" class="btn btn-outline-warning me-3">
+            @if(authService.user){
+              <button (click)="onEdit(movie.id ?? 0); $event.stopPropagation()" class="btn btn-outline-warning me-3">
                 <i class="fas fa-edit"></i> Modifier
               </button>
               <button (click)="onDelete(movie.id ?? 0); $event.stopPropagation()" class="btn btn-outline-danger">
                 <i class="fas fa-trash"></i> Suprimer
-              </button>
+              </button>}
             </div>
           </div>
-
   </div>
 }
 

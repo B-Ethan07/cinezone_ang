@@ -48,6 +48,7 @@ export class MovieForm {
       this.isEditMode = true; // On passe en mode édition
       this.loadMovie(postId); // On charge les données du post à modifier
     }
+    
   }
 
   // Méthode pour charger un post existant à partir de son ID

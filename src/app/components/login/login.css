@@ -14,6 +14,10 @@
   box-shadow: 0 0 0 0.2rem rgba(13, 202, 240, 0.25);
 }
 
+input::placeholder {
+  color: rgb(82, 82, 82);
+  opacity: 1; /* Facultatif : pour s'assurer que le texte est bien visible */
+}
 
 /* --- Liens --- */
 a {

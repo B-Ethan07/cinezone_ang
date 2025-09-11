@@ -15,7 +15,6 @@ import { MovieService } from '../../common/movie-service';
 export class MovieList {
   movies: Movie[] = [];
   loading: boolean = true;
-  deletedMovie: number[] = [];
 
   selectedCategoryId: number | null = null;
   categories: { [id: number]: string } = {
@@ -49,42 +48,31 @@ export class MovieList {
     });
   }
   onDelete(id: number): void {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce post ?')) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce film ?')) {
       this.movieService.deleteMovie(id).subscribe({
         next: () => {
-          this.toastr.success('Post supprimé avec succès');
-          this.deletedMovie.push(id); // mise à jour locale
+          this.toastr.success('Film supprimé avec succès');
         },
         error: () => {
-          this.toastr.error('Échec de la suppression du post');
+          this.toastr.error('Échec de la suppression du film');
         },
       });
     }
   }
 
-
   get filteredMovies(): Movie[] {
   if (this.selectedCategoryId === null) {
-    return this.movies.filter(movie => !this.deletedMovie.includes(movie.id ?? -1));
+    return this.movies;
   }
   return this.movies.filter(
-    movie => movie.category_id === this.selectedCategoryId && !this.deletedMovie.includes(movie.id ?? -1)
-  );
+    movie => movie.category_id === this.selectedCategoryId );
 }
  get categoryIds(): number[] {
   return Object.keys(this.categories).map(id => +id);
 }
 
-
-  onEdit(id: number): void {
-    this.router.navigate([`movies/${id}/edit`]);
-  }
-
   onView(id: number): void {
     this.router.navigate(['/movies', id]);
-  }
-  onCreate() {
-    this.router.navigate(['movies/new']);
   }
   sortByCategory() {
     this.movies.sort((a, b) => a.category_id - b.category_id);

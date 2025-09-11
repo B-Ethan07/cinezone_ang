@@ -14,8 +14,15 @@
         email
         placeholder="exemple@domaine.com"
       />
-      @if (emailRef.invalid && emailRef.touched) {
-      <div class="invalid-feedback">Le format de l'email n'est pas conforme</div>
+      @if (emailRef.errors && emailRef.touched) {
+        <div class="invalid-feedback d-block">
+          @if (emailRef.errors['required']) {
+            <div>L'email est requis.</div>
+          }
+          @if (emailRef.errors['email']) {
+            <div>Format de l'email invalide (ex: exemple@domaine.com).</div>
+          }
+        </div>
       }
     </div>
 
@@ -34,8 +41,15 @@
         minlength="10"
         placeholder="Votre mot de passe"
       />
-      @if (passwordRef.invalid && passwordRef.touched) {
-      <div class="invalid-feedback">Le format du mot de passe n'est pas conforme</div>
+      @if (passwordRef.errors && passwordRef.touched) {
+        <div class="invalid-feedback d-block">
+          @if (passwordRef.errors['required']) {
+            <div>Le mot de passe est requis.</div>
+          }
+          @if (passwordRef.errors['minlength']) {
+            <div>Le mot de passe doit contenir au moins 10 caractères.</div>
+          }
+        </div>
       }
     </div>
     <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">

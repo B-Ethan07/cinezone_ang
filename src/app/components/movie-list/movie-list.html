@@ -2,10 +2,6 @@
   <h2 class="text-center mb-4">Catalogue de Films</h2>
 
   <div class="controls d-flex justify-content-between align-items-center mb-4">
-    <button (click)="onCreate()" class="btn btn-outline-warning">
-      <i class="fas fa-plus"></i> Créer un film
-    </button>
-
     <!-- Categorie select -->
     <div class="sort-buttons d-flex gap-2"><div class="form-group mb-3">
       <select id="categorySelect" class="form-select" [(ngModel)]="selectedCategoryId">
@@ -78,16 +74,6 @@
                 <span class="info-label">Catégorie:</span>
                 <span class="info-value">{{ getCategoryName(movie.category_id) }}</span>
               </div>
-            </div>
-
-            <!-- Actions qui apparaissent au hover -->
-            <div class="movie-actions ">
-              <button (click)="onEdit(movie.id ?? 0); $event.stopPropagation()" class="btn btn-outline-warning">
-                <i class="fas fa-edit"></i>
-              </button>
-              <button (click)="onDelete(movie.id ?? 0); $event.stopPropagation()" class="btn btn-outline-danger">
-                <i class="fas fa-trash"></i>
-              </button>
             </div>
           </div>
         </div>

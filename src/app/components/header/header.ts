@@ -36,4 +36,7 @@ export class Header {
       error: () => alert('Erreur durant la deconnexion'),
   });
 }
+  onCreate() {
+    this.router.navigate(['movies/new']);
+  }
 }
