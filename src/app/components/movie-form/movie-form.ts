@@ -4,10 +4,11 @@ import { Movie } from '../../models/movie';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../common/movie-service';
 import { ToastrService } from 'ngx-toastr';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-movie-form',
-  imports: [ FormsModule ],
+  imports: [ FormsModule, NgbDatepickerModule ],
   templateUrl: './movie-form.html',
   styleUrl: './movie-form.css'
 })
@@ -48,7 +49,7 @@ export class MovieForm {
       this.isEditMode = true; // On passe en mode édition
       this.loadMovie(postId); // On charge les données du post à modifier
     }
-    
+
   }
 
   // Méthode pour charger un post existant à partir de son ID

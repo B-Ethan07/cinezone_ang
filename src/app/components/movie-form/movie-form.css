@@ -31,27 +31,10 @@ select::placeholder {
   color: #f8f8f8;
 }
 
-/* --- Slider --- */
-.custom-range {
-  accent-color: #f0ce0d;
-  height: 1.5rem;
-}
-input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  padding-left: 0;
-}
-
-/* Masquer le mois et le jour dans l'affichage */
-input[type="date"] {
-  position: relative;
-}
-
-input[type="date"]:before {
-  content: attr(data-year);
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+::ng-deep .year-picker .ngb-dp-month-name,
+::ng-deep .year-picker .ngb-dp-week,
+::ng-deep .year-picker .ngb-dp-day {
+  display: none;
 }
 
 /* --- Boutons --- */
