@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api.vercel.com',
+  apiUrl: 'https://cinezone-phi.vercel.app',
 };
